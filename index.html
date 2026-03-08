@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clínica Veterinária Pokotucho — Cuidado que vem do coração</title>
+    <meta name="description" content="Na Pokotucho, seu pet é tratado com o amor que ele merece. Consultas veterinárias, banho e tosa, petshop e farmácia em União/PI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="pokotucho.css" />
+  </head>
+  <style>
+      /* ── TOKENS ─────────────────────────────────── */
+      :root {
+        --salmon:   #C97A5E;
+        --salmon-l: #E8A88F;
+        --salmon-d: #A85E44;
+        --offwhite: #F5F0EB;
+        --offwhite-d: #EDE6DC;
+        --cream:    #FAF7F3;
+        --ink:      #2E2318;
+        --muted:    #7A6555;
+        --white:    #FFFFFF;
+        --r:        18px;
+        --r-lg:     28px;
+        --shadow:   0 6px 32px rgba(100,60,30,.10);
+        --shadow-s: 0 2px 12px rgba(100,60,30,.07);
+      }
+
+      /* ── RESET ──────────────────────────────────── */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Nunito', sans-serif;
+        color: var(--ink);
+        background: var(--cream);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+
+      /* ── LAYOUT ─────────────────────────────────── */
+      .wrap { width: min(1120px, 92%); margin-inline: auto; }
+      section { padding: 6rem 0; }
+
+      /* ── TYPOGRAPHY ─────────────────────────────── */
+      h1, h2, h3, .brand, .footer-brand { font-family: 'Fredoka', sans-serif; line-height: 1.15; }
+      h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 600; }
+      h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 600; color: var(--ink); }
+      h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .4rem; }
+      p  { color: var(--muted); margin-bottom: .7rem; }
+      strong { color: var(--ink); font-weight: 700; }
+
+      /* ── HEADER ─────────────────────────────────── */
+      .site-header {
+        position: sticky; top: 0; z-index: 100;
+        background: rgba(245,240,235,.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(201,122,94,.15);
+        transition: box-shadow .3s;
+      }
+      .site-header.scrolled { box-shadow: var(--shadow-s); }
+      .nav-wrapper {
+        display: flex; justify-content: space-between; align-items: center;
+        min-height: 76px; gap: 1rem;
+      }
+      .brand {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 1.9rem; font-weight: 700;
+        color: var(--salmon);
+        letter-spacing: .01em;
+      }
+      .nav-list { list-style: none; display: flex; gap: .5rem; flex-wrap: wrap; }
+      .nav-list a {
+        padding: .45rem 1rem; border-radius: 999px;
+        font-size: .95rem; font-weight: 700;
+        font-family: 'Fredoka', sans-serif;
+        color: var(--ink);
+        transition: background .2s, color .2s, transform .2s;
+      }
+      .nav-list a:hover { background: var(--offwhite-d); transform: translateY(-2px); }
+      .nav-cta {
+        background: var(--salmon) !important; color: var(--white) !important;
+        padding: .45rem 1.2rem !important;
+      }
+      .nav-cta:hover { background: var(--salmon-d) !important; }
+
+      /* ── LOGO HERO ──────────────────────────────── */
+      .logo-hero {
+        background: var(--offwhite);
+        padding: 3.5rem 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: hidden;
+      }
+      .logo-hero img {
+        width: min(680px, 88%);
+        display: block;
+        margin-inline: auto;
+        animation: fadeUp .7s ease both;
+        mix-blend-mode: multiply;
+      }
+
+      /* ── HERO ───────────────────────────────────── */
+      .hero {
+        padding: 3.5rem 0 4.5rem;
+        background: var(--offwhite);
+        position: relative; overflow: hidden;
+      }
+      .hero::before {
+        content: '';
+        position: absolute; inset: 0;
+        background: radial-gradient(ellipse 600px 400px at 80% 50%, rgba(201,122,94,.08) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem; align-items: center;
+      }
+      .hero-badge {
+        display: inline-flex; align-items: center; gap: .5rem;
+        background: var(--offwhite-d); color: var(--salmon-d);
+        border-radius: 999px; padding: .35rem .9rem;
+        font-size: .85rem; font-weight: 700;
+        font-family: 'Fredoka', sans-serif;
+        margin-bottom: 1.2rem;
+        animation: fadeUp .6s ease both;
+      }
+      .hero h1 {
+        margin-bottom: 1.2rem;
+        color: var(--ink);
+        animation: fadeUp .6s ease .1s both;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--salmon);
+      }
+      .hero > .wrap > .hero-grid > div > p {
+        font-size: 1.08rem; max-width: 44ch;
+        animation: fadeUp .6s ease .2s both;
+      }
+      .hero-actions {
+        display: flex; gap: .85rem; flex-wrap: wrap;
+        margin-top: 2rem;
+        animation: fadeUp .6s ease .3s both;
+      }
+      .btn {
+        display: inline-flex; align-items: center; gap: .5rem;
+        padding: .75rem 1.6rem; border-radius: 999px;
+        font-weight: 700; font-size: .97rem;
+        font-family: 'Fredoka', sans-serif;
+        cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s;
+        border: none;
+      }
+      .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+      .btn-secondary { background: var(--white); color: var(--ink); border: 2px solid var(--offwhite-d); }
+      .btn-wa { background: #25D366; color: #fff; }
+
+      .hero-visual {
+        position: relative;
+        animation: fadeRight .7s ease .2s both;
+      }
+      .hero-card {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        box-shadow: var(--shadow);
+        padding: 2.4rem;
+        border-left: 4px solid var(--salmon-l);
+      }
+      .hero-card-quote {
+        font-family: 'Fredoka', sans-serif;
+        font-size: 1.25rem; font-weight: 500;
+        color: var(--ink);
+        line-height: 1.5;
+      }
+
+      /* ── TRUST BAR ──────────────────────────────── */
+      .trust-bar {
+        padding: 1.6rem 0;
+        background: var(--salmon);
+      }
+      .trust-items {
+        display: flex; justify-content: center;
+        gap: 2rem; flex-wrap: wrap;
+      }
+      .trust-item {
+        display: flex; align-items: center; gap: .6rem;
+        font-size: .95rem; font-weight: 700;
+        font-family: 'Fredoka', sans-serif;
+        color: var(--white);
+      }
+      .trust-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: rgba(255,255,255,.6); display: inline-block; flex-shrink: 0;
+      }
+
+      /* ── SECTION LABEL ──────────────────────────── */
+      .section-label {
+        display: inline-block;
+        font-family: 'Fredoka', sans-serif;
+        font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+        color: var(--salmon); margin-bottom: .6rem;
+      }
+
+      /* ── ABOUT ──────────────────────────────────── */
+      .about { background: var(--white); }
+      .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+      .about-image-block { position: relative; }
+      .about-img-placeholder {
+        background: linear-gradient(135deg, var(--offwhite), var(--offwhite-d));
+        border-radius: var(--r-lg);
+        min-height: 380px;
+        display: grid; place-items: center;
+        font-family: 'Fredoka', sans-serif; font-size: 1.1rem; color: var(--salmon);
+        text-align: center; padding: 2rem;
+        border: 2px dashed rgba(201,122,94,.25);
+      }
+      .about-tag {
+        position: absolute; bottom: -1.2rem; right: -1.2rem;
+        background: var(--salmon); color: var(--white);
+        border-radius: var(--r-lg); padding: 1rem 1.4rem;
+        text-align: center; box-shadow: var(--shadow);
+      }
+      .about-tag strong { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; display: block; line-height: 1; }
+      .about-tag span { font-size: .8rem; opacity: .9; }
+      .about-text p { max-width: 46ch; }
+      .values-list { margin-top: 1.8rem; display: grid; gap: .9rem; }
+      .value-item {
+        display: flex; gap: .85rem; align-items: flex-start;
+        background: var(--cream); border-radius: var(--r);
+        padding: .9rem 1.1rem;
+      }
+      .value-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+      .value-item p { margin: 0; font-size: .92rem; }
+
+      /* ── SERVICES ───────────────────────────────── */
+      .services { background: var(--offwhite); }
+      .services-intro { max-width: 54ch; margin-bottom: 3.5rem; }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.4rem;
+      }
+      .service-card {
+        background: var(--white); border-radius: var(--r-lg);
+        padding: 1.8rem; box-shadow: var(--shadow-s);
+        transition: transform .25s, box-shadow .25s;
+        position: relative; overflow: hidden;
+      }
+      .service-card::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, var(--salmon), var(--salmon-l));
+        border-radius: 4px 4px 0 0;
+      }
+      .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+      .service-card h3 { color: var(--ink); margin-bottom: .5rem; font-family: 'Fredoka', sans-serif; font-size: 1.15rem; }
+      .service-card p { font-size: .93rem; margin: 0; }
+      .service-tag {
+        display: inline-block; margin-top: .9rem;
+        background: var(--offwhite-d); color: var(--salmon-d);
+        border-radius: 999px; padding: .22rem .7rem;
+        font-size: .78rem; font-weight: 700; font-family: 'Fredoka', sans-serif;
+      }
+
+    /* ── WHY US ─────────────────────────────────── */
+      .why { background: var(--ink); color: #fff; }
+      .why p { color: rgba(255,255,255,.65); }
+      .why h2 { color: #fff; }
+      .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+      .why-list { display: grid; gap: 1.2rem; margin-top: 2rem; }
+      .why-item {
+        display: flex; gap: 1rem; align-items: flex-start;
+        border-left: 2px solid var(--salmon-l);
+        padding-left: 1.1rem;
+      }
+      .why-item h3 { color: #fff; font-size: 1rem; margin-bottom: .2rem; font-family: 'Fredoka', sans-serif; }
+      .why-item p { font-size: .9rem; margin: 0; }
+      .why-visual {
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: var(--r-lg);
+        padding: 2.5rem;
+        display: grid; gap: 1.2rem;
+      }
+      .why-stat-row {
+        display: flex; justify-content: space-between;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding-bottom: 1.2rem; gap: 1rem;
+      }
+      .why-stat-row:last-child { border: none; padding: 0; }
+      .ws-num { font-family: 'Fredoka', sans-serif; font-size: 2.2rem; font-weight: 600; color: var(--salmon-l); }
+      .ws-label { font-size: .85rem; color: rgba(255,255,255,.55); margin-top: .2rem; }
+
+      /* ── PETSHOP ────────────────────────────────── */
+      .petshop { background: var(--white); }
+      .petshop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+      .product-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
+      .ptag {
+        background: var(--offwhite-d); border-radius: 999px;
+        padding: .4rem .9rem; font-size: .9rem; font-weight: 700;
+        font-family: 'Fredoka', sans-serif;
+        color: var(--salmon-d);
+      }
+      .pharmacy-box {
+        background: linear-gradient(135deg, var(--offwhite), #fff);
+        border-radius: var(--r-lg); padding: 1.6rem 1.8rem;
+        border: 1px solid rgba(201,122,94,.2);
+        margin-top: 1.8rem;
+      }
+      .pharmacy-box h3 { color: var(--salmon-d); font-family: 'Fredoka', sans-serif; }
+      .pharmacy-box p { margin: .5rem 0 0; font-size: .93rem; }
+
+      /* ── CTA SECTION ────────────────────────────── */
+      .cta-section {
+        background: linear-gradient(135deg, var(--salmon), var(--salmon-d));
+        color: #fff; text-align: center;
+        padding: 5rem 0;
+      }
+      .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+      .cta-section p { color: rgba(255,255,255,.85); max-width: 50ch; margin-inline: auto; }
+      .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.2rem; }
+
+      /* ── CONTACT ────────────────────────────────── */
+      .contact { background: var(--offwhite); }
+      .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+      .contact-info { display: grid; gap: 1rem; }
+      .ci-row {
+        display: flex; align-items: flex-start; gap: 1rem;
+        background: var(--white); border-radius: var(--r);
+        padding: 1rem 1.2rem;
+        box-shadow: var(--shadow-s);
+      }
+      .ci-icon { font-size: 1.4rem; flex-shrink: 0; }
+      .ci-row strong { display: block; margin-bottom: .15rem; font-family: 'Fredoka', sans-serif; font-size: 1rem; }
+      .ci-row a { color: var(--salmon-d); font-weight: 700; }
+      .ci-row a:hover { text-decoration: underline; }
+      .map-placeholder {
+        background: linear-gradient(135deg, var(--offwhite-d), var(--offwhite));
+        border-radius: var(--r-lg);
+        min-height: 280px;
+        display: grid; place-items: center;
+        color: var(--salmon); font-weight: 700;
+        font-family: 'Fredoka', sans-serif;
+        font-size: .95rem;
+        text-align: center; padding: 2rem;
+        border: 2px dashed rgba(201,122,94,.3);
+      }
+      .hours-box {
+        background: var(--ink); color: #fff;
+        border-radius: var(--r-lg); padding: 1.6rem;
+        margin-top: 1.4rem;
+      }
+      .hours-box h3 { color: #fff; margin-bottom: 1rem; font-family: 'Fredoka', sans-serif; font-size: 1.15rem; }
+      .hours-row {
+        display: flex; justify-content: space-between;
+        padding: .4rem 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: .9rem;
+      }
+      .hours-row:last-child { border: none; }
+      .hours-row span:last-child { color: var(--salmon-l); font-weight: 700; }
+
+      /* ── FOOTER ─────────────────────────────────── */
+      .site-footer {
+        background: var(--ink); color: rgba(255,255,255,.6);
+        padding: 3rem 0;
+      }
+      .footer-inner {
+        display: flex; justify-content: space-between;
+        gap: 2rem; flex-wrap: wrap; align-items: center;
+      }
+      .footer-brand { font-family: 'Fredoka', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--salmon-l); }
+      .footer-sub { font-size: .85rem; margin-top: .3rem; }
+      .footer-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+      .footer-links a { font-size: .9rem; transition: color .2s; }
+      .footer-links a:hover { color: var(--salmon-l); }
+      .footer-copy {
+        font-size: .82rem; text-align: center; margin-top: 2rem;
+        border-top: 1px solid rgba(255,255,255,.08); padding-top: 1.5rem;
+      }
+
+      /* ── WHATSAPP FLOAT ─────────────────────────── */
+      .wa-float {
+        position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+        background: #25D366; color: #fff;
+        border-radius: 999px; padding: .8rem 1.4rem;
+        display: flex; align-items: center; gap: .6rem;
+        font-weight: 700; font-size: .95rem;
+        font-family: 'Fredoka', sans-serif;
+        box-shadow: 0 6px 28px rgba(37,211,102,.4);
+        transition: transform .25s, box-shadow .25s;
+        cursor: pointer;
+      }
+      .wa-float:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(37,211,102,.5); }
+      .wa-float svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+
+      /* ── ANIMATIONS ─────────────────────────────── */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fadeRight {
+        from { opacity: 0; transform: translateX(24px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      .reveal {
+        opacity: 0; transform: translateY(28px);
+        transition: opacity .65s ease, transform .65s ease;
+      }
+      .reveal.visible { opacity: 1; transform: none; }
+
+      /* ── RESPONSIVE ─────────────────────────────── */
+      @media (max-width: 840px) {
+        .hero-grid, .about-grid, .why-grid, .petshop-grid, .contact-grid { grid-template-columns: 1fr; }
+        .hero { padding: 3rem 0 3.5rem; }
+        .about-tag { position: static; margin-top: 1rem; display: inline-flex; gap: 1rem; align-items: center; }
+        .why-visual { display: none; }
+        section { padding: 4rem 0; }
+        .nav-wrapper { flex-direction: column; padding: .75rem 0; gap: .6rem; }
+        .wa-float span { display: none; }
+        .wa-float { padding: .9rem; border-radius: 50%; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- HEADER -->
+
+    <header class="site-header" id="site-header">
+      <div class="wrap nav-wrapper">
+        <div class="brand">Pokotucho</div>
+        <nav>
+          <ul class="nav-list">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#especialidades">Especialidades</a></li>
+            <li><a href="#petshop">Petshop</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="https://wa.me/5500000000000" class="nav-cta">🐾 Agendar</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- LOGO HERO -->
+      <div class="logo-hero"></div>
+      <section id="inicio" class="section hero">
+        <img
+          src="pokotucho-logo.jpg"
+          alt="Pokotucho — Clínica Veterinária e Pet Shop"
+          width="680"
+        />
+      </div>
+
+      <!-- HERO --> 
+        <section class="hero" id="inicio">
+        <div class="wrap hero-grid">
+          <div>
+            <h1>Seu pet merece o melhor.<br><em>E você também.</em></h1>
+            <p>A <strong>Clínica Veterinária Pokotucho</strong> nasceu para
+              oferecer cuidado acolhedor, humanizado e profissional para os
+              pets e suas famílias. A marca carrega afeto no nome, no propósito e
+              em cada escolha.</p>
+            <div class="hero-actions">
+              <a href="https://wa.me/5500000000000" class="btn btn-wa">
+                <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.2.1 11.7c0 2 .5 4 1.5 5.8L0 24l6.7-1.7c1.7.9 3.5 1.4 5.3 1.4h.1c6.6 0 11.9-5.2 11.9-11.7 0-3.1-1.2-6-3.5-8.5Z"/></svg>
+                Agendar pelo WhatsApp
+              </a>
+              <a href="#especialidades" class="btn btn-secondary">Ver especialidades →</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card">
+              <p class="hero-card-quote">"Tratamos cada pet como se fosse o nosso."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST BAR -->
+      <div class="trust-bar">
+        <div class="wrap">
+          <div class="trust-items">
+            <div class="trust-item"><span class="trust-dot"></span> Médicos veterinários registrados no CFMV</div>
+            <div class="trust-item"><span class="trust-dot"></span> Exames laboratoriais no local</div>
+            <div class="trust-item"><span class="trust-dot"></span> Farmácia veterinária própria</div>
+            <div class="trust-item"><span class="trust-dot"></span> Atendimento para cães, gatos e outros</div>
+            <div class="trust-item"><span class="trust-dot"></span> Agendamento fácil pelo WhatsApp</div>
+          </div>
+        </div>
+      </div>
+
+     <!-- ABOUT -->
+      <section class="about" id="sobre">
+        <div class="wrap about-grid">
+          <div class="about-image-block reveal">
+            <div class="about-img-placeholder">
+              Espaço para foto da equipe<br>ou clínica Pokotucho
+            </div>
+            <div class="about-tag">
+              <strong>❤️</strong>
+              <span>Feito com afeto</span>
+            </div>
+          </div>
+          <div class="about-text reveal">
+            <span class="section-label">Quem somos</span>
+            <h2>Nascemos para cuidar de quem você mais ama</h2>
+            <p>A <strong>Clínica Veterinária Pokotucho</strong> foi criada com um propósito simples e profundo: oferecer ao seu pet o mesmo nível de cuidado, atenção e carinho que você daria a qualquer membro da família.</p>
+            <p>Sabemos que levar o bichinho ao veterinário pode gerar ansiedade — para ele e para você. Por isso, criamos um ambiente acolhedor, limpo, tranquilo e humanizado, onde cada visita é uma experiência positiva.</p>
+            <div class="values-list">
+              <div class="value-item">
+                <div class="value-icon">🤝</div>
+                <div>
+                  <h3>Atendimento humanizado</h3>
+                  <p>Explicamos tudo com clareza, sem pressa e sem julgamentos.</p>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">🔒</div>
+                <div>
+                  <h3>Transparência total</h3>
+                  <p>Orçamento claro antes de qualquer procedimento. Sem surpresas.</p>
+                </div>
+              </div>
+              <div class="value-item">
+                <div class="value-icon">📲</div>
+                <div>
+                  <h3>Acompanhamento pós-consulta</h3>
+                  <p>Estamos disponíveis pelo WhatsApp para dúvidas após a consulta.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+        <!-- SERVICES -->
+      <section class="services" id="especialidades">
+        <div class="wrap">
+          <div class="reveal">
+            <span class="section-label">Especialidades</span>
+            <h2>Tudo que seu pet precisa, em um só lugar</h2>
+            <p class="services-intro">Conte com uma equipe capacitada e equipamentos modernos para manter a saúde do seu pet sempre em dia — da prevenção ao tratamento.</p>
+          </div>
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <h3>Consulta Clínica Geral</h3>
+              <p>Avaliação completa do estado de saúde, diagnóstico e orientação sobre cuidados preventivos e curativos.</p>
+              <span class="service-tag">Essencial</span>
+            </div>
+            <div class="service-card reveal">
+              <h3>Vacinas e Prevenção</h3>
+              <p>Protocolo vacinal completo para cães e gatos. Controle de vermífugos, antipulgas e anticarrapatos.</p>
+              <span class="service-tag">Profilaxia</span>
+            </div>
+            <div class="service-card reveal">
+              <h3>Exames Laboratoriais</h3>
+              <p>Hemograma, bioquímicos e outros exames com resultados rápidos para agilizar o diagnóstico.</p>
+              <span class="service-tag">Diagnóstico</span>
+            </div>
+            <div class="service-card reveal">
+              <h3>Banho e Tosa</h3>
+              <p>Higiene e estética com produtos de qualidade, profissionais treinados e muito cuidado para deixar seu pet confortável.</p>
+              <span class="service-tag">Estética</span>
+            </div>
+            <div class="service-card reveal">
+              <h3>Farmácia Veterinária</h3>
+              <p>Medicamentos, suplementos e produtos específicos disponíveis na própria clínica, mediante orientação do veterinário.</p>
+              <span class="service-tag">Farmácia</span>
+            </div>
+            <div class="service-card reveal">
+              <h3>Nutrição e Bem-estar</h3>
+              <p>Orientação nutricional individualizada. Ajudamos a escolher a dieta ideal para cada fase e perfil do seu pet.</p>
+              <span class="service-tag">Saúde</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+     <!-- WHY US -->
+      <section class="why">
+        <div class="wrap why-grid">
+          <div class="reveal">
+            <span class="section-label" style="color:var(--salmon-l)">Por que a Pokotucho?</span>
+            <h2>O que nos torna a escolha certa para o seu pet</h2>
+            <p>Tantas clínicas na região, mas só uma trata o seu pet como família. Veja o que nos diferencia:</p>
+            <div class="why-list">
+              <div class="why-item">
+                <div>
+                  <h3>Ambiente sem estresse</h3>
+                  <p>Espaço pensado para reduzir a ansiedade dos pets: cores calmas, espera tranquila, sem barulhos desnecessários.</p>
+                </div>
+              </div>
+              <div class="why-item">
+                <div>
+                  <h3>Veterinário de confiança</h3>
+                  <p>Profissionais com registro ativo no CFMV, comprometidos com a medicina veterinária baseada em evidências.</p>
+                </div>
+              </div>
+              <div class="why-item">
+                <div>
+                  <h3>Agendamento fácil e rápido</h3>
+                  <p>Sem filas, sem burocracia. Marque sua consulta em segundos pelo WhatsApp.</p>
+                </div>
+              </div>
+              <div class="why-item">
+                <div>
+                  <h3>Tudo em um só local</h3>
+                  <p>Clínica + petshop + farmácia. Você resolve tudo na mesma visita, sem perder tempo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="why-visual reveal">
+            <div class="why-stat-row">
+              <div>
+                <div class="ws-num">100%</div>
+                <div class="ws-label">de dedicação em cada atendimento</div>
+              </div>
+            </div>
+            <div class="why-stat-row">
+              <div>
+                <div class="ws-num">+10</div>
+                <div class="ws-label">especialidades disponíveis</div>
+              </div>
+            </div>
+            <div class="why-stat-row">
+              <div>
+                <div class="ws-num">24h</div>
+                <div class="ws-label">WhatsApp disponível para dúvidas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PETSHOP -->
+       <section class="petshop" id="petshop">
+        <div class="wrap petshop-grid"
+        <div class="reveal">
+          <span class="section-label">Pet Shop</span>
+          <h2>Tudo para a rotina do seu pet, com qualidade garantida</h2>
+          <p>Nossa loja foi pensada para facilitar a vida do tutor. Produtos cuidadosamente selecionados para
+          o bem-estar, conforto e alegria do seu companheiro.</p>
+          <div class="product-tags">
+            <div class="ptag">Alimentação premium</div>
+            <div class="ptag">Higiene e banho</div>
+            <div class="ptag">Acessórios</div>
+            <div class="ptag">Brinquedos</div>
+            <div class="ptag">Camas e casinhas</div>
+            <div class="ptag">Coleiras e guias</div>
+            <div class="ptag">Roupinhas</div>
+            <div class="ptag">Produtos naturais</div>
+        </div>
+        <div class="pharmacy-box">
+          <h3>Farmácia Veterinária</h3>
+          <p>Medicamentos, antiparasitários, suplementos vitamínicos e produtos de uso veterinário, dispensados com responsabilidade e orientação profissional. Tudo que o seu pet precisa, com segurança.</p>
+        </div>
+        </div>
+         <div class="reveal">
+            <div class="about-img-placeholder" style="min-height:400px">
+              Espaço para foto do petshop<br>e produtos disponíveis
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="wrap">
+          <h2>Seu pet está esperando pelo cuidado que merece 🐾</h2>
+          <p>Agende agora mesmo pelo WhatsApp. É rápido, fácil e o primeiro passo para uma vida mais saudável ao lado do seu melhor amigo.</p>
+          <div class="cta-buttons">
+            <a href="https://wa.me/5500000000000" class="btn btn-wa" style="font-size:1.05rem;padding:.85rem 2rem">
+              <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff;flex-shrink:0"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.2.1 11.7c0 2 .5 4 1.5 5.8L0 24l6.7-1.7c1.7.9 3.5 1.4 5.3 1.4h.1c6.6 0 11.9-5.2 11.9-11.7 0-3.1-1.2-6-3.5-8.5Z"/></svg>
+              Agendar pelo WhatsApp
+            </a>
+            <a href="#contato" class="btn" style="background:rgba(255,255,255,.18);color:#fff;border:2px solid rgba(255,255,255,.35)">Ver informações de contato</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contato">
+        <div class="wrap">
+          <div class="reveal" style="margin-bottom:3rem">
+            <span class="section-label">Contato e Localização</span>
+            <h2>Estamos aqui por você</h2>
+          </div>
+          <div class="contact-grid">
+            <div class="reveal">
+              <div class="contact-info">
+                <div class="ci-row">
+                  <div class="ci-icon">📍</div>
+                  <div>
+                    <strong>Endereço</strong>
+                    Rua/Av. da Clínica, nº 000 — Bairro, União/PI
+                  </div>
+                </div>
+                <div class="ci-row">
+                  <div class="ci-icon">📱</div>
+                  <div>
+                    <strong>WhatsApp / Telefone</strong>
+                    <a href="https://wa.me/5500000000000">(00) 00000-0000</a>
+                  </div>
+                </div>
+                <div class="ci-row">
+                  <div class="ci-icon">✉️</div>
+                  <div>
+                    <strong>E-mail</strong>
+                    <a href="mailto:contato@pokotucho.com">contato@pokotucho.com</a>
+                  </div>
+                </div>
+                <div class="ci-row">
+                  <div class="ci-icon">📸</div>
+                  <div>
+                    <strong>Instagram</strong>
+                    <a href="https://instagram.com/pokotucho.vet" target="_blank">@pokotucho.vet</a>
+                  </div>
+                </div>
+              </div>
+              <div class="hours-box">
+                <h3>⏰ Horários de atendimento</h3>
+                <div class="hours-row"><span>Segunda a Sexta</span><span>08h – 18h</span></div>
+                <div class="hours-row"><span>Sábado</span><span>08h – 13h</span></div>
+                <div class="hours-row"><span>Domingo</span><span>Emergências</span></div>
+              </div>
+            </div>
+            <div class="reveal">
+              <div class="map-placeholder">
+                Espaço para mapa incorporado<br>(Google Maps embed)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-inner">
+          <div>
+            <div class="footer-brand">Pokotucho</div>
+            <div class="footer-sub">Clínica Veterinária & Pet Shop — União/PI</div>
+          </div>
+          <div class="footer-links">
+            <a href="#sobre">Sobre</a>
+            <a href="#especialidades">Especialidades</a>
+            <a href="#petshop">Pet Shop</a>
+            <a href="#contato">Contato</a>
+            <a href="https://instagram.com/pokotucho.vet" target="_blank">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-copy">
+          © 2025 Clínica Veterinária Pokotucho. Todos os direitos reservados.
+        </div>
+      </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5500000000000" class="wa-float" aria-label="Falar pelo WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 .1 5.2.1 11.7c0 2 .5 4 1.5 5.8L0 24l6.7-1.7c1.7.9 3.5 1.4 5.3 1.4h.1c6.6 0 11.9-5.2 11.9-11.7 0-3.1-1.2-6-3.5-8.5Z"/></svg>
+      <span>Agendar agora</span>
+    </a>
+
+    <script>
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      });
+
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(el => io.observe(el));
+    </script>
+  </body>
+</html>
