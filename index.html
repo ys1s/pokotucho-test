@@ -7,7 +7,7 @@
     <meta name="description" content="Na Pokotucho, seu pet é tratado com o amor que ele merece. Consultas veterinárias, banho e tosa, petshop e farmácia em União/PI." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
       /* ── TOKENS ─────────────────────────────────── */
       :root {
@@ -65,10 +65,10 @@
         min-height: 76px; gap: 1rem;
       }
       .brand {
-        font-family: 'Bubblegum Sans', cursive;
+        font-family: 'Caprasimo', cursive;
         font-size: 2rem; font-weight: 400;
         color: var(--salmon);
-        letter-spacing: .02em;
+        letter-spacing: .01em;
       }
       .nav-list { list-style: none; display: flex; gap: .5rem; flex-wrap: wrap; }
       .nav-list a {
@@ -369,7 +369,7 @@
         display: flex; justify-content: space-between;
         gap: 2rem; flex-wrap: wrap; align-items: center;
       }
-      .footer-brand { font-family: 'Bubblegum Sans', cursive; font-size: 1.7rem; font-weight: 400; color: var(--salmon-l); }
+      .footer-brand { font-family: 'Caprasimo', cursive; font-size: 1.7rem; font-weight: 400; color: var(--salmon-l); }
       .footer-sub { font-size: .85rem; margin-top: .3rem; }
       .footer-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
       .footer-links a { font-size: .9rem; transition: color .2s; }
@@ -688,7 +688,7 @@
                   <div class="ci-icon">✉️</div>
                   <div>
                     <strong>E-mail</strong>
-                    <a href="mailto:pokotucho.vet@gmail.com">pokotucho.vet@gmail.com</a>
+                    <a href="/cdn-cgi/l/email-protection#72021d191d0607111a1d5c04170632151f131b1e5c111d1f"><span class="__cf_email__" data-cfemail="eb9b8480849f9e888384c59d8e9fab8c868a8287c5888486">[email&#160;protected]</span></a>
                   </div>
                 </div>
                 <div class="ci-row">
@@ -752,7 +752,7 @@
       <span>Agendar agora</span>
     </a>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
       const header = document.getElementById('site-header');
       window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 20);
@@ -761,15 +761,4 @@
       const reveals = document.querySelectorAll('.reveal');
       reveals.forEach(el => el.classList.add('will-animate'));
 
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => io.observe(el));
-    </script>
-  </body>
-</html>
-    </script>
-  </body>
-</html>
+      const io = new IntersectionObserver((entries)
